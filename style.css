@@ -1,0 +1,215 @@
+/*custom font*/
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+@import url(http://thecodeplayer.com/uploads/fonts/fontawesome/css/font-awesome.min.css);
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+	height: 100%;
+	/*Image only BG fallback*/
+	background: url('http://s.wordpress.org/about/images/desktops/wp-dark-lo-1440x900.png');
+	/*background = gradient + image pattern combo*/
+	background: 
+		linear-gradient(rgba(11, 22, 42, 0.9), rgba(155, 89, 182, 0.2)), 
+		url('http://s.wordpress.org/about/images/desktops/wp-dark-lo-1440x900.png');
+}
+
+body {
+	font-family: montserrat, arial, verdana;
+}
+
+
+/*form styles*/
+#msform {
+	width: 400px;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+#msform fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+	
+	/*stacking fieldsets above each other*/
+	position: absolute;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+	display: none;
+}
+/*inputs*/
+#msform input, #msform textarea {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+/*buttons*/
+#msform .action-button {
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+#msform .skip-button {
+	width: 100px;
+	background: #5F9F9F;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+#msform .skip-button:hover, #msform .skip-button:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #5F9F9F;
+}
+
+/*headings*/
+.wizard-title {
+	font-size: 15px;
+	text-transform: uppercase;
+	color: #2C3E50;
+	margin-bottom: 10px;
+}
+.wizard-subtitle {
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
+}
+/*progressbar*/
+#progressbar {
+	margin-bottom: 60px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+}
+#progressbar li {
+	list-style-type: none;
+	color: white;
+	text-transform: uppercase;
+	font-size: 9px;
+	width: 20%;
+	float: left;
+	position: relative;
+}
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	color: #333;
+	background: white;
+	border-radius: 3px;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: white;
+	position: absolute;
+	left: -50%;
+	top: 9px;
+	z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: #27AE60;
+	color: white;
+}
+
+/* Strong */
+.veryweak{
+	color:#B40404;
+}
+
+.weak{
+	color:#DF7401;
+}
+
+.medium{
+	color:#FFFF00;
+}
+
+.strong{
+	color:#9AFE2E;
+}
+
+.verystrong{
+	color:#0B610B;
+}
+
+/*Adding custom checkbox icons*/
+label {
+	position: relative;
+	padding-left: 30px;
+	font-size: 14px;
+	color: #666;
+	cursor: pointer;
+}
+label:before, label:after {
+	font-family: FontAwesome;
+	font-size: 21px;
+	/*absolutely positioned*/
+	position: absolute; top: 0; left: 0;
+}
+label:before {
+	content: '\f096'; /*unchecked*/
+}
+label:after {
+	content: '\f046'; /*checked*/
+	/*checked icon will be hidden by default by using 0 max-width and overflow hidden*/
+	max-width: 0;
+	overflow: hidden;
+	opacity: 0.5;
+	/*CSS3 transitions for animated effect*/
+	transition: all 0.35s;
+}
+
+/*hiding the original checkboxes*/
+input[type="checkbox"] {
+	display: none;
+}
+/*when the user checks the checkbox the checked icon will animate in*/
+input[type="checkbox"]:checked + label:after {
+	max-width: 25px; /*an arbitratry number more than the icon's width*/
+	opacity: 1; /*for fade in effect*/
+}
+
+/*adding some colors for fun*/
+#latest-stable+label:before, #latest-stable+label:after {color: hsl(120, 45%, 40%);}
+#latest-beta+label:before, #latest-beta+label:after {color: hsl(180, 45%, 40%);}
+#plugin+label:before, #plugin+label:after {color: hsl(0, 45%, 40%);}
+#theme+label:before, #theme+label:after {color: hsl(60, 45%, 40%);}
