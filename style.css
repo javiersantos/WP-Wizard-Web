@@ -19,6 +19,11 @@ body {
 	font-family: montserrat, arial, verdana;
 }
 
+.logo {
+    display: inline-block;
+    width: 400px
+}
+
 
 /*form styles*/
 #msform {
